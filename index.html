@@ -19,15 +19,18 @@
     <header class="app-header">
         <div class="header-ornament header-ornament-left" aria-hidden="true">⚜</div>
         <div class="logo-area">
-            <svg class="header-shield" viewBox="0 0 100 100" width="50" height="50">
-                <path d="M50,5 L90,20 L80,75 L50,95 L20,75 L10,20 Z" fill="#2d0a0a" stroke="#d4af37" stroke-width="3"/>
-                <path d="M50,15 L80,26 L72,70 L50,86 L28,70 L20,26 Z" fill="#7a1a1a" />
-                <circle cx="50" cy="50" r="15" fill="#111" stroke="#d4af37" stroke-width="2"/>
-                <path d="M45,40 L55,40 L52,58 L48,58 Z" fill="#d4af37"/>
-                <circle cx="50" cy="65" r="4" fill="#d4af37"/>
-            </svg>
+            <div class="logo-emblem" aria-hidden="true">
+                <img
+                    class="logo-emblem-img"
+                    src="assets/Aharadak.png"
+                    alt=""
+                    width="48"
+                    height="48"
+                    decoding="async"
+                >
+            </div>
             <div class="logo-text">
-                <h1 class="font-gothic-title">Ameaças de Arton</h1>
+                <h1 class="font-gothic-title">Calculadora de Encontros T20</h1>
                 <p>Calculadora de Combate e Desafio</p>
             </div>
         </div>
@@ -250,11 +253,32 @@
                 <div class="nd-background-glow" id="nd-glow"></div>
                 <div class="nd-card-content">
                     <div class="nd-badge-container">
-                        <div class="rune-ring" id="rune-ring"></div>
-                        <div class="ruby-gem" id="ruby-gem">
-                            <span class="ruby-label">ND DO ENCONTRO</span>
-                            <span class="ruby-value" id="encounter-nd-val">-</span>
-                            <span class="ruby-fraction" id="encounter-nd-frac"></span>
+                        <div class="rune-ring" id="rune-ring" aria-hidden="true">
+                            <span class="rune-mark rune-n">ᚦ</span>
+                            <span class="rune-mark rune-e">ᛟ</span>
+                            <span class="rune-mark rune-s">ᚱ</span>
+                            <span class="rune-mark rune-w">ᛗ</span>
+                        </div>
+                        <div class="ruby-gem is-empty" id="ruby-gem">
+                            <div class="ruby-facet-shine" aria-hidden="true"></div>
+                            <div class="ruby-inner">
+                                <span class="ruby-label">ND</span>
+                                <div class="ruby-core">
+                                    <img
+                                        class="ruby-logo"
+                                        src="assets/Aharadak.png"
+                                        alt=""
+                                        width="56"
+                                        height="56"
+                                        decoding="async"
+                                    >
+                                    <div class="ruby-nd-display">
+                                        <span class="ruby-value" id="encounter-nd-val" aria-live="polite"></span>
+                                        <span class="ruby-fraction" id="encounter-nd-frac"></span>
+                                    </div>
+                                </div>
+                                <span class="ruby-caption">do encontro</span>
+                            </div>
                         </div>
                     </div>
                     <div class="nd-analysis-text">
@@ -449,6 +473,7 @@
 
     <script src="treasure-data.js"></script>
     <script src="treasure-engine.js"></script>
+    <script src="custom-select.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

@@ -364,6 +364,7 @@ window.toggleAdvancedParty = function() {
 window.applyTemplate = function(name, ndStr) {
     document.getElementById('threat-name').value = name;
     document.getElementById('threat-nd').value = ndStr;
+    refreshCustomSelect(document.getElementById('threat-nd'));
     document.getElementById('threat-qty').value = 1;
     playSlashSound();
 };
@@ -628,7 +629,8 @@ function calculateEncounter() {
     // Update Ruby Badge
     const valDisplay = document.getElementById('encounter-nd-val');
     const fracDisplay = document.getElementById('encounter-nd-frac');
-    
+
+    setRubyEmptyState(false);
     valDisplay.textContent = roundedND;
     const decimalPart = runningND - roundedND;
     if (decimalPart === 0.25) fracDisplay.textContent = '1/4';
@@ -643,9 +645,17 @@ function calculateEncounter() {
     calculateXP(runningND);
 }
 
+function setRubyEmptyState(isEmpty) {
+    const rubyGem = document.getElementById('ruby-gem');
+    if (rubyGem) {
+        rubyGem.classList.toggle('is-empty', isEmpty);
+    }
+}
+
 function resetDashboard() {
-    document.getElementById('encounter-nd-val').textContent = '-';
+    document.getElementById('encounter-nd-val').textContent = '';
     document.getElementById('encounter-nd-frac').textContent = '';
+    setRubyEmptyState(true);
     
     const diffTag = document.getElementById('diff-tag');
     diffTag.className = 'difficulty-tag';
@@ -1191,6 +1201,7 @@ function initBreakdownPanel() {
 // INITIALIZATION
 // ==========================================================================
 window.addEventListener('DOMContentLoaded', () => {
+    initCustomSelects();
     initParticles();
     resetDashboard();
     runConsoleTests();
