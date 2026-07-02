@@ -76,18 +76,25 @@ function initCustomSelects() {
         });
 
         list.addEventListener('click', (e) => e.stopPropagation());
+        list.addEventListener('mousedown', (e) => e.stopPropagation());
         trigger.addEventListener('keydown', (e) => onTriggerKeydown(e, wrapper, select));
         list.addEventListener('keydown', (e) => onListKeydown(e, wrapper, select));
 
         syncCustomSelectDisplay(wrapper, select);
     });
 
-    document.addEventListener('click', () => closeAllCustomSelects());
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('.cselect') || e.target.closest('.cselect-list')) return;
+        closeAllCustomSelects();
+    });
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeAllCustomSelects();
     });
     window.addEventListener('resize', () => closeAllCustomSelects());
-    window.addEventListener('scroll', () => closeAllCustomSelects(), true);
+    window.addEventListener('scroll', (e) => {
+        if (e.target.closest?.('.cselect-list')) return;
+        closeAllCustomSelects();
+    }, true);
 }
 
 function syncCustomSelectDisplay(wrapper, select) {
